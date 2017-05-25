@@ -34,16 +34,46 @@
         };
 		
 		todoList.iter = function() {
+			if (todoList.state.finished) {
+				return;
+			}
+			
 			todoList.state.left = todoList.state.work[todoList.state.k];
 			todoList.state.right = todoList.state.work[todoList.state.k+
 			1];
 			if (todoList.state.left.length === 0 || todoList.state.right.length === 0) {
 				todoList.state.toExec = true;
 				
+				// complete most internal cycly
+				
 				todoList.state.mergeResult = todoList.state.mergeResult.concat(todoList.state.left).concat(todoList.state.right)
 				
 				todoList.state.left.splice(0, todoList.state.left.length);
 				todoList.state.right.splice(0, todoList.state.right.length);
+				
+				// complete work of inner for
+				
+				todoList.state.work[todoList.state.j] = todoList.state.mergeResult;
+				todoList.state.mergeResult = [];
+				
+				// now I need to advance in inner for
+				todoList.state.j = todoList.state.j + 1;
+				todoList.state.k = todoList.state.k + 2;
+				
+				if (todoList.state.k >= todoList.state.lim) {
+					todoList.state.j = 0;
+					todoList.state.k = 0;
+					todoList.state.lim = Math.floor((todoList.state.lim+1)/2);
+					
+					if (todoList.state.lim <= 1) {
+						todoList.state.finished = true;
+						// finished, nothing to do
+						return;
+					}
+					// need to advance in outer for
+				}
+				
+				todoList.iter();
 				return;
 			}
 			
