@@ -29,9 +29,9 @@
         };
 		
 		todoList.iter = function() {
-			var left = todoList.state.work[todoList.state.k];
-			var right = todoList.state.work[todoList.state.k+1];
-			if (left.length === 0 || right.length === 0) {
+			todoList.state.left = todoList.state.work[todoList.state.k];
+			todoList.state.right = todoList.state.work[todoList.state.k+1];
+			if (todoList.state.left.length === 0 || todoList.state.right.length === 0) {
 				todoList.state.toExec = true;
 				return;
 			}
@@ -40,7 +40,9 @@
 		};
 		
 		todoList.start = function() {
-			todoList.state.work = todoList.list1; // todo: read from incoming
+			todoList.state = {};
+			todoList.state.work = [];
+			//todoList.state.work = todoList.list1; // todo: read from incoming
 			
 			var i, len;
 			for (i=0, len=todoList.list1.length; i < len; i++){

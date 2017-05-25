@@ -19,7 +19,7 @@
           <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
           [ <a href="" ng-click="todoList.archive()">archive</a> ]
           <ul>
-            <li ng-repeat="ele in todoList.list1">
+            <li ng-repeat="ele in todoList.state.left">
               <label class="checkbox">
                 <span>{{ele.text}}</span>
               </label>
@@ -27,7 +27,7 @@
           </ul>
 		  
 		  <ul>
-            <li ng-repeat="ele in todoList.list2">
+            <li ng-repeat="ele in todoList.state.right">
               <label class="checkbox">
                 <span>{{ele.text}}</span>
               </label>
