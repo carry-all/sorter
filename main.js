@@ -19,7 +19,16 @@
 		todoList.result = [
 		];
 		
+		todoList.sort = function(a,b) {
+			if (a.initPos < b.initPos)
+				return -1;
+			if (a.initPos > b.initPos)
+				return 1;
+			return 0;
+		}
+
 		todoList.incoming = "";
+		todoList.initListOrder = [];
      
         todoList.first = function() {
           todoList.state.mergeResult.push(todoList.state.left[0]);
@@ -68,6 +77,18 @@
 					if (todoList.state.lim <= 1) {
 						todoList.state.finished = true;
 						// finished, nothing to do
+						
+						// want to provide an initial list with numbers
+						var sorted = todoList.state.work[0].concat();
+						var ti, tl;
+						for (ti=0, tl=sorted.length; ti < tl; ti++){
+							//if (typeof sorted[ti] != 'undefined') {
+								sorted[ti].order = ti;
+							//}
+						}
+						
+						todoList.initListOrder = sorted.sort(todoList.sort);
+						
 						return;
 					}
 					// need to advance in outer for
@@ -91,6 +112,7 @@
 			for (i=0, len=incoming.length; i < len; i++){
 				var obj = {};
 				obj.text = incoming[i];
+				obj.initPos = i;
 				
 				todoList.state.work.push([obj]);
 			}

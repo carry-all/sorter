@@ -60,6 +60,15 @@
             </li>
           </ul>
 		  
+		  <ul ng-show="todoList.state.finished">
+			<li>Sort results (init list order)</li>
+            <li ng-repeat="ele in todoList.initListOrder">
+              <label class="checkbox">
+                <span>{{ele.order}} {{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
+		  
         </div>
       </body>
     </html>
