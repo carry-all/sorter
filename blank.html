@@ -17,14 +17,15 @@
 			</form>
 			
 			<div ng-hide="todoList.state.toExec">
-          <form ng-submit="todoList.first()">
-            <input class="btn-primary" type="submit" value="first" accesskey="a">
-          </form>
-		  <form ng-submit="todoList.second()">
-            <input class="btn-primary" type="submit" value="second" accesskey="s">
+			<p>{{todoList.state.left[0].text}}</p>
+			<form ng-submit="todoList.first()">
+				<input class="btn-primary" type="submit" value="first" accesskey="a">
+			</form>
+			<p>{{todoList.state.right[0].text}}</p>
+			<form ng-submit="todoList.second()">
+				<input class="btn-primary" type="submit" value="second" accesskey="s">
           </form>
 		  </div>
-		  
           <ul>
             <li ng-repeat="ele in todoList.state.left">
               <label class="checkbox">
