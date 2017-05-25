@@ -34,7 +34,6 @@
 			todoList.state.left = todoList.state.work[todoList.state.k];
 			todoList.state.right = todoList.state.work[todoList.state.k+
 			1];
-			todoList.state.mergeResult = [];
 			if (todoList.state.left.length === 0 || todoList.state.right.length === 0) {
 				todoList.state.toExec = true;
 				return;
@@ -46,6 +45,7 @@
 		todoList.start = function() {
 			todoList.state = {};
 			todoList.state.work = [];
+			todoList.state.mergeResult = [];
 			//todoList.state.work = todoList.list1; // todo: read from incoming
 			
 			var i, len;
