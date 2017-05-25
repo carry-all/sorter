@@ -5,6 +5,9 @@
           {text:'1', done:true},
           {text:'6', done:false},
 		  {text:'10', done:false},
+		  {text:'3', done:true},
+          {text:'9', done:false},
+		  {text:'15', done:false},
 		  ];
 		  
 		todoList.list2 = [
@@ -36,6 +39,11 @@
 			1];
 			if (todoList.state.left.length === 0 || todoList.state.right.length === 0) {
 				todoList.state.toExec = true;
+				
+				todoList.state.mergeResult = todoList.state.mergeResult.concat(todoList.state.left).concat(todoList.state.right)
+				
+				todoList.state.left.splice(0, todoList.state.left.length);
+				todoList.state.right.splice(0, todoList.state.right.length);
 				return;
 			}
 			
