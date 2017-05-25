@@ -84,11 +84,15 @@
 			todoList.state = {};
 			todoList.state.work = [];
 			todoList.state.mergeResult = [];
-			//todoList.state.work = todoList.list1; // todo: read from incoming
+
+			var incoming = todoList.incoming.split('\n');
 			
 			var i, len;
-			for (i=0, len=todoList.list1.length; i < len; i++){
-				todoList.state.work.push([todoList.list1[i]]);
+			for (i=0, len=incoming.length; i < len; i++){
+				var obj = {};
+				obj.text = incoming[i];
+				
+				todoList.state.work.push([obj]);
 			}
 			todoList.state.work.push([]);
 
