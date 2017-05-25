@@ -19,18 +19,22 @@
 		todoList.incoming = "";
      
         todoList.first = function() {
-          todoList.result.push(todoList.list1[0]);
-		  todoList.list1.splice(0,1);
+          todoList.state.mergeResult.push(todoList.state.left[0]);
+		  todoList.state.left.splice(0,1);
+		  todoList.iter();
         };
 		
 		todoList.second = function() {
-          todoList.result.push(todoList.list2[0]);
-		  todoList.list2.splice(0,1);
+          todoList.state.mergeResult.push(todoList.state.right[0]);
+		  todoList.state.right.splice(0,1);
+		  todoList.iter();
         };
 		
 		todoList.iter = function() {
 			todoList.state.left = todoList.state.work[todoList.state.k];
-			todoList.state.right = todoList.state.work[todoList.state.k+1];
+			todoList.state.right = todoList.state.work[todoList.state.k+
+			1];
+			todoList.state.mergeResult = [];
 			if (todoList.state.left.length === 0 || todoList.state.right.length === 0) {
 				todoList.state.toExec = true;
 				return;
