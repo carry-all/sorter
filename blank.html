@@ -42,6 +42,15 @@
               </label>
             </li>
           </ul>
+		  
+		  <ul>
+			<li>work 0:</li>
+            <li ng-repeat="ele in todoList.state.work[0]">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
 		  <div ng-hide="todoList.state.toExec">
           <form ng-submit="todoList.first()">
             <input class="btn-primary" type="submit" value="first">
