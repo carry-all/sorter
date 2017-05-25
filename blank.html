@@ -43,7 +43,7 @@
             </li>
           </ul>
 		  
-		  <ul>
+		  <ul ng-hide="todoList.state.finished">
 			<li>results</li>
             <li ng-repeat="ele in todoList.state.mergeResult">
               <label class="checkbox">
@@ -52,8 +52,8 @@
             </li>
           </ul>
 		  
-		  <ul>
-			<li>work 0:</li>
+		  <ul ng-show="todoList.state.finished">
+			<li>Sort results</li>
             <li ng-repeat="ele in todoList.state.work[0]">
               <label class="checkbox">
                 <span>{{ele.text}}</span>
