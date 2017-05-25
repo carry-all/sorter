@@ -1,0 +1,55 @@
+    <!doctype html>
+    <html ng-app="todoApp">
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="main.js"></script>
+      </head>
+      <body>
+        <h2>Sorter</h2>
+		
+        <div ng-controller="TodoListController as todoList">
+			<h3>To sort:</h3>
+			<textarea ng-model="todoList.incoming">
+		
+			</textarea>
+			<form ng-submit="todoList.start()">
+				<input class="btn-primary" type="submit" value="start">
+			</form>
+		  
+          <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+          [ <a href="" ng-click="todoList.archive()">archive</a> ]
+          <ul>
+            <li ng-repeat="ele in todoList.list1">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
+		  
+		  <ul>
+            <li ng-repeat="ele in todoList.list2">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
+		  
+		  <ul>
+			<li>results</li>
+            <li ng-repeat="ele in todoList.result">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
+		  
+          <form ng-submit="todoList.first()">
+            <input class="btn-primary" type="submit" value="first">
+          </form>
+		  <form ng-submit="todoList.second()">
+            <input class="btn-primary" type="submit" value="second">
+          </form>
+        </div>
+      </body>
+    </html>
+
