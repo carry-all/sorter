@@ -42,13 +42,14 @@
               </label>
             </li>
           </ul>
-		  
+		  <div ng-hide="todoList.state.toExec">
           <form ng-submit="todoList.first()">
             <input class="btn-primary" type="submit" value="first">
           </form>
 		  <form ng-submit="todoList.second()">
             <input class="btn-primary" type="submit" value="second">
           </form>
+		  </div>
         </div>
       </body>
     </html>

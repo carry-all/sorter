@@ -31,7 +31,7 @@
 		todoList.iter = function() {
 			var left = todoList.state.work[todoList.state.k];
 			var right = todoList.state.work[todoList.state.k+1];
-			if ((left.length === 0 || right.length === 0) {
+			if (left.length === 0 || right.length === 0) {
 				todoList.state.toExec = true;
 				return;
 			}
