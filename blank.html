@@ -15,6 +15,15 @@
 			<form ng-submit="todoList.start()">
 				<input class="btn-primary" type="submit" value="start">
 			</form>
+			
+			<div ng-hide="todoList.state.toExec">
+          <form ng-submit="todoList.first()">
+            <input class="btn-primary" type="submit" value="first" accesskey="a">
+          </form>
+		  <form ng-submit="todoList.second()">
+            <input class="btn-primary" type="submit" value="second" accesskey="s">
+          </form>
+		  </div>
 		  
           <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
           [ <a href="" ng-click="todoList.archive()">archive</a> ]
@@ -51,14 +60,7 @@
               </label>
             </li>
           </ul>
-		  <div ng-hide="todoList.state.toExec">
-          <form ng-submit="todoList.first()">
-            <input class="btn-primary" type="submit" value="first">
-          </form>
-		  <form ng-submit="todoList.second()">
-            <input class="btn-primary" type="submit" value="second">
-          </form>
-		  </div>
+		  
         </div>
       </body>
     </html>
