@@ -43,16 +43,8 @@
 				<input class="btn-primary" type="submit" value="first" accesskey="a">
 			</form>
           <ul class="list-group">
-            <li class="list-group-item active" ng-repeat-start="ele in todoList.state.left" ng-if="$first">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
-			<li class="list-group-item" ng-repeat-end ng-if="!$first">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
+            <li class="list-group-item active" ng-repeat-start="ele in todoList.state.left" ng-if="$first">{{ele.text}}</li>
+			<li class="list-group-item" ng-repeat-end ng-if="!$first">{{ele.text}}</li>
           </ul>
 		  </div>
 		  
@@ -61,40 +53,25 @@
 				<input class="btn-primary" type="submit" value="second" accesskey="s">
           </form>
 		  <ul class="list-group">
-            <li class="list-group-item active" ng-repeat-start="ele in todoList.state.right" ng-if="$first">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
-			<li class="list-group-item" ng-repeat-end ng-if="!$first">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
+            <li class="list-group-item active" ng-repeat-start="ele in todoList.state.right" ng-if="$first">{{ele.text}}</li>
+			<li class="list-group-item" ng-repeat-end ng-if="!$first">{{ele.text}}</li>
           </ul>
 		  </div>
 		  </div>
 		  
 		  <div class="row">
-		  <div class="col-md-8" ng-hide="todoList.state.finished">
+		  <div class="col-md-2"></div>
+		  <div class="col-md-4 weel" ng-hide="todoList.state.finished">
 		  <p>Already combined</p>
 		  <ul class="list-group" >
-            <li class="list-group-item" ng-repeat="ele in todoList.state.mergeResult">
-              <!--<label class="checkbox">-->
-                <span>{{ele.text}}</span>
-              <!--</label>-->
-            </li>
+            <li class="list-group-item" ng-repeat="ele in todoList.state.mergeResult">{{ele.text}}</li>
           </ul>
 		  </div>
 		  </div>
 		  
 		  <ul ng-show="todoList.state.finished" ng-if="todoList.state.work[0]">
 			<li>Sort results</li>
-            <li ng-repeat="ele in todoList.state.work[0]">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
+            <li ng-repeat="ele in todoList.state.work[0]">{{ele.text}}</li>
           </ul>
 		  
 		  <ul ng-show="todoList.state.finished" ng-if="todoList.initListOrder">
