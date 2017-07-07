@@ -30,6 +30,7 @@
 		todoList.incoming = "";
 		todoList.state = {};
 		todoList.state.finished = true;
+		todoList.question = "Исполнение чего принесет большую ценность тебе?";
 		// todoList.initListOrder = [];
      
         todoList.first = function() {

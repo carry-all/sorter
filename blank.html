@@ -1,4 +1,5 @@
     <!doctype html>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
     <html ng-app="todoApp">
 	
 
@@ -23,12 +24,13 @@
         
 		
         <div class="container-fluid" ng-controller="TodoListController as todoList">
-		<h2>Sorter</h2>
 		<div ng-show="todoList.state.finished">
 			<h3>To sort:</h3>
 			<textarea ng-model="todoList.incoming">
-		
 			</textarea>
+			
+			<p>By question:</p>
+			<input type="text" name="userName" ng-model="todoList.question" >
 			<form ng-submit="todoList.start()">
 				<input class="btn-primary" type="submit" value="start">
 			</form>
@@ -38,6 +40,8 @@
 		  </div>
 		  
 		  <div class="row" ng-hide="todoList.state.finished">
+		  <h1 class="text-center">{{todoList.question}}</h1>
+		  <div class="row"></div>
 		  <div class="col-md-6">
           <ul class="list-group">
             <!--<li class="list-group-item active" ng-repeat-start="ele in todoList.state.left" ng-if="$first">{{ele.text}}</li>-->
