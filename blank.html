@@ -20,20 +20,19 @@
         
 		
         <div class="container-fluid" ng-controller="TodoListController as todoList">
-		<div ng-show="todoList.state.finished" >
+		<div class="form-group" ng-show="todoList.state.finished" >
 			<div class="input-group">
-				<textarea placeholder="List to sort" class="form-control" ng-model="todoList.incoming">
+				<label for="list">List</label>
+				<textarea id="list" placeholder="List to sort" class="form-control" ng-model="todoList.incoming">
 				</textarea>
 			</div>
 			<br>
 			
 			<div class="input-group">
-			<span for="question">Question</span>
+			<label for="question">Question</label>
 			<input id="question" type="text" class="form-control" name="userName" ng-model="todoList.question" >
 			</div>
-			<form ng-submit="todoList.start()">
-				<input class="btn" type="submit" value="start">
-			</form>
+			<button type="button" class="btn" ng-click="todoList.start()">Start</button>
 			
 			
 		
@@ -88,5 +87,6 @@
 		
 
       </body>
+	  
     </html>
 
