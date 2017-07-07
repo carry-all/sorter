@@ -28,7 +28,9 @@
 		}
 
 		todoList.incoming = "";
-		todoList.initListOrder = [];
+		todoList.state = {};
+		todoList.state.finished = true;
+		// todoList.initListOrder = [];
      
         todoList.first = function() {
           todoList.state.mergeResult.push(todoList.state.left[0]);
@@ -103,6 +105,7 @@
 		
 		todoList.start = function() {
 			todoList.state = {};
+			todoList.state.finished = false;
 			todoList.state.work = [];
 			todoList.state.mergeResult = [];
 

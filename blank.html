@@ -1,13 +1,30 @@
     <!doctype html>
     <html ng-app="todoApp">
+	
+
       <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="main.js"></script>
-      </head>
-      <body>
-        <h2>Sorter</h2>
 		
-        <div ng-controller="TodoListController as todoList">
+			  		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<style>
+	.block: padding 2px;
+</style>
+
+      </head>
+	  
+
+      <body>
+        
+		
+        <div class="container" ng-controller="TodoListController as todoList">
+		<h2>Sorter</h2>
+		<div ng-show="todoList.state.finished">
 			<h3>To sort:</h3>
 			<textarea ng-model="todoList.incoming">
 		
@@ -16,42 +33,62 @@
 				<input class="btn-primary" type="submit" value="start">
 			</form>
 			
-			<div ng-hide="todoList.state.toExec">
-			<p>{{todoList.state.left[0].text}}</p>
-			<form ng-submit="todoList.first()">
+			
+		
+		  </div>
+		  
+		  <div class="row" ng-hide="todoList.state.finished">
+		  <div class="col-md-4">
+		  <form ng-submit="todoList.first()">
 				<input class="btn-primary" type="submit" value="first" accesskey="a">
 			</form>
-			<p>{{todoList.state.right[0].text}}</p>
-			<form ng-submit="todoList.second()">
+          <ul class="list-group">
+            <li class="list-group-item active" ng-repeat-start="ele in todoList.state.left" ng-if="$first">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+			<li class="list-group-item" ng-repeat-end ng-if="!$first">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
+		  </div>
+		  
+		  <div class="col-md-4">
+		  <form ng-submit="todoList.second()">
 				<input class="btn-primary" type="submit" value="second" accesskey="s">
           </form>
+		  <ul class="list-group">
+            <li class="list-group-item active" ng-repeat-start="ele in todoList.state.right" ng-if="$first">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+			<li class="list-group-item" ng-repeat-end ng-if="!$first">
+              <label class="checkbox">
+                <span>{{ele.text}}</span>
+              </label>
+            </li>
+          </ul>
 		  </div>
-          <ul>
-            <li ng-repeat="ele in todoList.state.left">
-              <label class="checkbox">
+		  </div>
+		  
+		  <div class="row">
+		  <div class="col-md-8" ng-hide="todoList.state.finished">
+		  <p>Already combined</p>
+		  <ul class="list-group" >
+            <li class="list-group-item" ng-repeat="ele in todoList.state.mergeResult">
+              <!--<label class="checkbox">-->
                 <span>{{ele.text}}</span>
-              </label>
+              <!--</label>-->
             </li>
           </ul>
+		  </div>
+		  </div>
 		  
-		  <ul>
-            <li ng-repeat="ele in todoList.state.right">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
-          </ul>
-		  
-		  <ul ng-hide="todoList.state.finished">
-			<li>results</li>
-            <li ng-repeat="ele in todoList.state.mergeResult">
-              <label class="checkbox">
-                <span>{{ele.text}}</span>
-              </label>
-            </li>
-          </ul>
-		  
-		  <ul ng-show="todoList.state.finished">
+		  <ul ng-show="todoList.state.finished" ng-if="todoList.state.work[0]">
 			<li>Sort results</li>
             <li ng-repeat="ele in todoList.state.work[0]">
               <label class="checkbox">
@@ -60,7 +97,7 @@
             </li>
           </ul>
 		  
-		  <ul ng-show="todoList.state.finished">
+		  <ul ng-show="todoList.state.finished" ng-if="todoList.initListOrder">
 			<li>Sort results (init list order)</li>
             <li ng-repeat="ele in todoList.initListOrder">
               <label class="checkbox">
@@ -70,6 +107,8 @@
           </ul>
 		  
         </div>
+		
+
       </body>
     </html>
 
