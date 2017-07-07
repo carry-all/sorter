@@ -22,7 +22,7 @@
       <body>
         
 		
-        <div class="container" ng-controller="TodoListController as todoList">
+        <div class="container-fluid" ng-controller="TodoListController as todoList">
 		<h2>Sorter</h2>
 		<div ng-show="todoList.state.finished">
 			<h3>To sort:</h3>
@@ -38,7 +38,7 @@
 		  </div>
 		  
 		  <div class="row" ng-hide="todoList.state.finished">
-		  <div class="col-md-4">
+		  <div class="col-md-6">
           <ul class="list-group">
             <!--<li class="list-group-item active" ng-repeat-start="ele in todoList.state.left" ng-if="$first">{{ele.text}}</li>-->
 			<button type="button" class="list-group-item list-group-item-action active" ng-repeat-start="ele in todoList.state.left" ng-if="$first" accesskey="a" ng-click="todoList.first()">{{ele.text}}</button>
@@ -46,7 +46,7 @@
           </ul>
 		  </div>
 		  
-		  <div class="col-md-4">
+		  <div class="col-md-6">
 		  <ul class="list-group">
 			<button type="button" class="list-group-item list-group-item-action active" ng-repeat-start="ele in todoList.state.right" ng-if="$first" accesskey="s" ng-click="todoList.second()">{{ele.text}}</button>
 			<li class="list-group-item" ng-repeat-end ng-if="!$first">{{ele.text}}</li>
@@ -55,8 +55,8 @@
 		  </div>
 		  
 		  <div class="row">
-		  <div class="col-md-2"></div>
-		  <div class="col-md-4 weel" ng-hide="todoList.state.finished">
+		  <div class="col-md-3"></div>
+		  <div class="col-md-6 weel" ng-hide="todoList.state.finished">
 		  
 		  <ul class="list-group" >
             <li class="list-group-item" ng-repeat="ele in todoList.state.mergeResult">{{ele.text}}</li>
@@ -64,19 +64,21 @@
 		  </div>
 		  </div>
 		  
-		  <ul ng-show="todoList.state.finished" ng-if="todoList.state.work[0]">
-			<li>Sort results</li>
-            <li ng-repeat="ele in todoList.state.work[0]">{{ele.text}}</li>
+		  <div class="row" ng-show="todoList.state.finished && todoList.initListOrder">
+		  <div class="col-md-6">
+		  <p>Sort results</p>
+		  <ul class="list-group">
+            <li class="list-group-item" ng-repeat="ele in todoList.state.work[0]">{{ele.text}}</li>
           </ul>
+		  </div>
 		  
-		  <ul ng-show="todoList.state.finished" ng-if="todoList.initListOrder">
-			<li>Sort results (init list order)</li>
-            <li ng-repeat="ele in todoList.initListOrder">
-              <label class="checkbox">
-                <span>{{ele.order}} {{ele.text}}</span>
-              </label>
-            </li>
+		  <div class="col-md-6">
+		  <p>Sort results (init list order)</p>
+		  <ul class="list-group">
+            <li class="list-group-item" ng-repeat="ele in todoList.initListOrder">{{ele.order}} {{ele.text}}</li>
           </ul>
+		  </div>
+		  </div>
 		  
         </div>
 		
