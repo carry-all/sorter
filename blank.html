@@ -15,8 +15,7 @@
 
 		<style>
 			textarea#list {
-			width: 600px;
-			height: 200px;
+			height: 400px;
 		}
 		</style>
 
@@ -28,17 +27,13 @@
 		
         <div class="container-fluid" ng-controller="TodoListController as todoList">
 		<div class="form-group" ng-show="todoList.state.finished" >
-			<div class="input-group">
 				<textarea id="list" placeholder="List to sort" class="form-control" ng-model="todoList.incoming">
 				</textarea>
-			</div>
-			<br>
-			
-			<div class="input-group">
-			<label for="question">Question</label>
+
+				<label for="question">Question</label>
 			<input id="question" type="text" class="form-control" name="userName" ng-model="todoList.question" >
-			</div>
-			<button type="button" class="btn" ng-click="todoList.start()">Start</button>
+
+			<button type="button" class="btn btn-primary" ng-click="todoList.start()">Start</button>
 			
 			
 		
