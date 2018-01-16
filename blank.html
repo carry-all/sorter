@@ -29,19 +29,16 @@
 
 <body>
 <div class="container-fluid first-element" ng-controller="TodoListController as todoList">
-    <div class="form-group" ng-show="todoList.state.finished">
+    <div id="formBlock" class="form-group" ng-show="todoList.state.finished">
 				<textarea id="list" placeholder="List to sort" class="form-control" ng-model="todoList.incoming">
 				</textarea>
-
         <label for="question">Question</label>
         <input id="question" type="text" class="form-control" name="userName" ng-model="todoList.question">
 
         <button type="button" class="btn btn-primary" ng-click="todoList.start()">Start</button>
-
-
     </div>
 
-    <div class="row" ng-hide="todoList.state.finished">
+    <div id="compareWindow" class="row" ng-hide="todoList.state.finished">
         <h1 class="text-center">{{todoList.question}}</h1>
         <div class="row"></div>
         <div class="col-md-6">
@@ -63,7 +60,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div id="runtimeMergeResults" class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6 weel" ng-hide="todoList.state.finished">
 
@@ -73,7 +70,7 @@
         </div>
     </div>
 
-    <div class="row" ng-show="todoList.state.finished && todoList.initListOrder">
+    <div id="finalResults" class="row" ng-show="todoList.state.finished && todoList.initListOrder">
         <div class="col-md-6">
             <p>Sort results</p>
             <ul class="list-group">

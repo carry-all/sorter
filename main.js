@@ -1,20 +1,6 @@
 angular.module('todoApp', [])
     .controller('TodoListController', function () {
         var todoList = this;
-        todoList.list1 = [
-            {text: '1', done: true},
-            {text: '6', done: false},
-            {text: '10', done: false},
-            {text: '3', done: true},
-            {text: '9', done: false},
-            {text: '15', done: false},
-        ];
-
-        todoList.list2 = [
-            {text: '3', done: true},
-            {text: '9', done: false},
-            {text: '15', done: false},
-        ];
 
         todoList.result = [];
 
