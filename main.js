@@ -13,7 +13,14 @@ angular.module('todoApp', [])
             return 0;
         };
 
-        todoList.incoming = "";
+        todoList.incoming1 = "";
+        todoList.isIncoming1Sorted = false;
+        todoList.incoming2 = "";
+        todoList.isIncoming2Sorted = false;
+        todoList.isIncoming2Activated = false;
+        todoList.incoming3 = "";
+        todoList.isIncoming3Sorted = false;
+        todoList.isIncoming3Activated = false;
         todoList.state = {};
         todoList.state.finished = true;
         todoList.question = "Исполнение чего принесет большую ценность тебе?";
@@ -31,20 +38,28 @@ angular.module('todoApp', [])
             todoList.iter();
         };
 
+        todoList.activateList2 = function () {
+            todoList.isIncoming2Activated = true;
+        };
+
+        todoList.activateList3 = function () {
+            todoList.isIncoming3Activated = true;
+        };
+
         todoList.iter = function () {
             if (todoList.state.finished) {
                 return;
             }
 
             todoList.state.left = todoList.state.work[todoList.state.k];
-            todoList.state.right = todoList.state.work[todoList.state.k +
-            1];
+            todoList.state.right = todoList.state.work[todoList.state.k + 1];
+
             if (todoList.state.left.length === 0 || todoList.state.right.length === 0) {
                 todoList.state.toExec = true;
 
                 // complete most internal cycly
 
-                todoList.state.mergeResult = todoList.state.mergeResult.concat(todoList.state.left).concat(todoList.state.right)
+                todoList.state.mergeResult = todoList.state.mergeResult.concat(todoList.state.left).concat(todoList.state.right);
 
                 todoList.state.left.splice(0, todoList.state.left.length);
                 todoList.state.right.splice(0, todoList.state.right.length);
@@ -95,30 +110,40 @@ angular.module('todoApp', [])
             todoList.state.finished = false;
             todoList.state.work = [];
             todoList.state.mergeResult = [];
+            todoList.state.lim = 0;
 
-            var incoming = todoList.incoming.split('\n');
-            var len = incoming.length;
+            function registerIncomingList(incoming, isSorted) {
+                var len = incoming.length;
 
-            // enrich values with their initial positions
-            for (var i = 0; i < len; i++) {
-                var obj = {
-                    "text": incoming[i],
-                    "initPos": i
-                };
-                incoming[i] = obj;
+                // enrich values with their initial positions
+                for (var i = 0; i < len; i++) {
+                    var obj = {
+                        "text": incoming[i],
+                        "initPos": i
+                    };
+                    incoming[i] = obj;
+                }
+
+                if (isSorted) {
+                    todoList.state.work.push(incoming);
+                    todoList.state.lim++;
+                } else {
+                    // randomize a list
+                    var incomingLeft = len;
+                    while (incomingLeft) {
+                        i = Math.floor(Math.random() * incomingLeft--);
+                        var randomlyExtractedElement = incoming.splice(i, 1)[0];
+                        todoList.state.work.push([randomlyExtractedElement]);
+                        todoList.state.lim++;
+                    }
+                }
             }
 
-            // randomize a list
-            var incomingLeft = len;
-            while(incomingLeft) {
-                i = Math.floor(Math.random() * incomingLeft--);
-                var randomlyExtractedElement = incoming.splice(i, 1)[0];
-                todoList.state.work.push([randomlyExtractedElement]);
-            }
-            todoList.state.work.push([]);
+            registerIncomingList(todoList.incoming1.split('\n'), todoList.isIncoming1Sorted);
+            if (todoList.isIncoming2Activated) {registerIncomingList(todoList.incoming2.split('\n'), todoList.isIncoming2Sorted);}
+            if (todoList.isIncoming3Activated) {registerIncomingList(todoList.incoming3.split('\n'), todoList.isIncoming3Sorted);}
 
-            todoList.state.len = len;
-            todoList.state.lim = len;
+            todoList.state.work.push([]); // otherwise fails on a single element list
             todoList.state.j = 0;
             todoList.state.k = 0;
 

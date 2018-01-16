@@ -15,7 +15,7 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <style>
-        textarea#list {
+        textarea.list-items {
             height: 400px;
         }
 
@@ -30,8 +30,23 @@
 <body>
 <div class="container-fluid first-element" ng-controller="TodoListController as todoList">
     <div id="formBlock" class="form-group" ng-show="todoList.state.finished">
-				<textarea id="list" placeholder="List to sort" class="form-control" ng-model="todoList.incoming">
-				</textarea>
+        <div id="list1">
+            <label for="isList1Sorted">\/ Sorted</label>
+            <input id="isList1Sorted" type="checkbox" ng-model="todoList.isIncoming1Sorted">
+            <button type="button" class="btn btn-primary" ng-click="todoList.activateList2()" ng-hide="todoList.isIncoming2Activated">Add list</button>
+            <textarea id="list1Items" placeholder="List to sort" class="form-control list-items" ng-model="todoList.incoming1"></textarea>
+        </div>
+        <div id="list2" ng-show="todoList.isIncoming2Activated">
+            <label for="isList2Sorted">\/ Sorted</label>
+            <input id="isList2Sorted" type="checkbox" ng-model="todoList.isIncoming2Sorted">
+            <button type="button" class="btn btn-primary" ng-click="todoList.activateList3()" ng-hide="todoList.isIncoming3Activated">Add list</button>
+            <textarea id="list2Items" placeholder="List to sort" class="form-control list-items" ng-model="todoList.incoming2"></textarea>
+        </div>
+        <div id="list3" ng-show="todoList.isIncoming3Activated">
+            <label for="isList3Sorted">\/ Sorted</label>
+            <input id="isList3Sorted" type="checkbox" ng-model="todoList.isIncoming3Sorted">
+            <textarea id="list3Items" placeholder="List to sort" class="form-control list-items" ng-model="todoList.incoming3"></textarea>
+        </div>
         <label for="question">Question</label>
         <input id="question" type="text" class="form-control" name="userName" ng-model="todoList.question">
 
