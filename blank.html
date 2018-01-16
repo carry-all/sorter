@@ -93,7 +93,7 @@
             </ul>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" ng-hide="todoList.isIncoming2Activated">
             <p>Sort results (init list order)</p>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="ele in todoList.initListOrder">{{ele.order}} {{ele.text}}</li>
