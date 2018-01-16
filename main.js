@@ -1,3 +1,4 @@
+"use strict";
 angular.module('todoApp', [])
     .controller('TodoListController', function () {
         var todoList = this;
@@ -10,7 +11,7 @@ angular.module('todoApp', [])
             if (a.initPos > b.initPos)
                 return 1;
             return 0;
-        }
+        };
 
         todoList.incoming = "";
         todoList.state = {};
@@ -96,14 +97,23 @@ angular.module('todoApp', [])
             todoList.state.mergeResult = [];
 
             var incoming = todoList.incoming.split('\n');
+            var len = incoming.length;
 
-            var i, len;
-            for (i = 0, len = incoming.length; i < len; i++) {
-                var obj = {};
-                obj.text = incoming[i];
-                obj.initPos = i;
+            // enrich values with their initial positions
+            for (var i = 0; i < len; i++) {
+                var obj = {
+                    "text": incoming[i],
+                    "initPos": i
+                };
+                incoming[i] = obj;
+            }
 
-                todoList.state.work.push([obj]);
+            // randomize a list
+            var incomingLeft = len;
+            while(incomingLeft) {
+                i = Math.floor(Math.random() * incomingLeft--);
+                var randomlyExtractedElement = incoming.splice(i, 1)[0];
+                todoList.state.work.push([randomlyExtractedElement]);
             }
             todoList.state.work.push([]);
 
