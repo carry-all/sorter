@@ -23,7 +23,7 @@ angular.module('todoApp', [])
         todoList.isIncoming3Activated = false;
         todoList.state = {};
         todoList.state.finished = true;
-        todoList.question = "Исполнение чего принесет большую ценность тебе?";
+        todoList.question = "";
         // todoList.initListOrder = [];
 
         todoList.first = function () {

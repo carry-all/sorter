@@ -48,7 +48,17 @@
             <textarea id="list3Items" placeholder="List to sort" class="form-control list-items" ng-model="todoList.incoming3"></textarea>
         </div>
         <label for="question">Question</label>
-        <input id="question" type="text" class="form-control" name="userName" ng-model="todoList.question">
+        <input id="question" type="text" list="questions" autocomplete="off" class="form-control" name="userName" ng-model="todoList.question">
+        <datalist id="questions">
+            <option value="Исполнение чего принесет большую ценность тебе?"/>
+            <option value="Что хочется делать прямо сейчас?"/>
+            <option value="Исполнение чего принесет большую ценность проекту?"/>
+            <option value="Что быстрее довести до конца?"/>
+            <option value="Будет хуёвее, если я не сделаю что?"/>
+            <option value="Что мутнее?"/>
+            <option value="Что хочется отложить больше?"/>
+        </datalist>
+
 
         <button type="button" class="btn btn-primary" ng-click="todoList.start()">Start</button>
     </div>
