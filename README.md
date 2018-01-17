@@ -1,7 +1,7 @@
 # sorter
 A tool for manual sorting. It's based on a merge sort.
 
-[Link](https://rawgit.com/carry-all/sorter/master/blank.html) to use it without clone
+[Link](https://carry-all.github.io/sorter/) to use it without clone
 
 ## Hotkeys
 ### Chrome
