@@ -6,10 +6,22 @@ angular.module('todoApp', [])
         todoList.result = [];
 
         todoList.sort = function (a, b) {
-            if (a.initPos < b.initPos)
+            if (a.listNumber < b.listNumber) {
                 return -1;
-            if (a.initPos > b.initPos)
+            }
+
+            if (a.listNumber > b.listNumber) {
                 return 1;
+            }
+
+            if (a.initPos < b.initPos) {
+                return -1;
+            }
+
+            if (a.initPos > b.initPos) {
+                return 1;
+            }
+
             return 0;
         };
 
@@ -112,13 +124,14 @@ angular.module('todoApp', [])
             todoList.state.mergeResult = [];
             todoList.state.lim = 0;
 
-            function registerIncomingList(incoming, isSorted) {
+            function registerIncomingList(incoming, isSorted, listNumber) {
                 var len = incoming.length;
 
                 // enrich values with their initial positions
                 for (var i = 0; i < len; i++) {
                     var obj = {
                         "text": incoming[i],
+                        "listNumber": listNumber,
                         "initPos": i
                     };
                     incoming[i] = obj;
@@ -139,9 +152,13 @@ angular.module('todoApp', [])
                 }
             }
 
-            registerIncomingList(todoList.incoming1.split('\n'), todoList.isIncoming1Sorted);
-            if (todoList.isIncoming2Activated) {registerIncomingList(todoList.incoming2.split('\n'), todoList.isIncoming2Sorted);}
-            if (todoList.isIncoming3Activated) {registerIncomingList(todoList.incoming3.split('\n'), todoList.isIncoming3Sorted);}
+            registerIncomingList(todoList.incoming1.split('\n'), todoList.isIncoming1Sorted, 1);
+            if (todoList.isIncoming2Activated) {
+                registerIncomingList(todoList.incoming2.split('\n'), todoList.isIncoming2Sorted, 2);
+            }
+            if (todoList.isIncoming3Activated) {
+                registerIncomingList(todoList.incoming3.split('\n'), todoList.isIncoming3Sorted, 3);
+            }
 
             todoList.state.work.push([]); // otherwise fails on a single element list
             todoList.state.j = 0;

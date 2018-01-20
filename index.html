@@ -98,16 +98,32 @@
     <div id="finalResults" class="row" ng-show="todoList.state.finished && todoList.initListOrder">
         <div class="col-md-6">
             <p>Sort results</p>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="ele in todoList.state.work[0]">{{ele.text}}</li>
-            </ul>
+            <table class="table">
+                <tr>
+                    <th scope="col">Text</th>
+                    <th scope="col">List #</th>
+                </tr>
+                <tr ng-repeat="ele in todoList.state.work[0]">
+                    <td>{{ele.text}}</td>
+                    <td>{{ele.listNumber}}</td>
+                </tr>
+            </table>
         </div>
 
-        <div class="col-md-6" ng-hide="todoList.isIncoming2Activated">
+        <div class="col-md-6">
             <p>Sort results (init list order)</p>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="ele in todoList.initListOrder">{{ele.order}} {{ele.text}}</li>
-            </ul>
+            <table class="table">
+                <tr>
+                    <th scope="col">List #</th>
+                    <th scope="col">Global order</th>
+                    <th scope="col">Text</th>
+                </tr>
+                <tr ng-repeat="ele in todoList.initListOrder">
+                    <td>{{ele.listNumber}}</td>
+                    <td>{{ele.order}}</td>
+                    <td>{{ele.text}}</td>
+                </tr>
+            </table>
         </div>
     </div>
 
